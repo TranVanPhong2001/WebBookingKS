@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BookingKS.Models.PhieuDatPhong>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>DANH SÁCH PHIẾU ĐẶT PHÒNG</h2>
+<p>
+    @Html.ActionLink("Thêm", "Create")
+</p>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh Sách 
+    </div>
+
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Mã phiếu</th>
+                    <th>Khách hàng</th>
+                    <th>Ngày đến</th>
+                    <th>Ngày đi</th>
+
+                    <th>Số người</th>
+                   
+
+                    <th>Chức Năng</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.maPDP</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KhachHang.tenKH)
+                        </td>
+                        
+                        <td>@item.ngayDen</td>
+                        <td>@item.ngayDi</td>
+                        @*<td>
+            @Html.DisplayFor(modelItem => item.LoaiPhong.tenLP)
+        </td>*@
+                        <td>@item.soNguoi</td>
+
+                        @*<td>
+            <div class="home-sanpham-item_img" style="background-image: url(@item.Image); "></div>
+            <style>
+                .home-sanpham-item_img {
+                    padding-top: 100%;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
+            </style>
+        </td>*@
+
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.maPDP }) |
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.maPDP }) |
+                            @Html.ActionLink("Xoá", "Delete", new { id = item.maPDP })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

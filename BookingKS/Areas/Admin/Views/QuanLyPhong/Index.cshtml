@@ -1,0 +1,128 @@
+﻿@model IEnumerable<BookingKS.Models.Phong>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout-Admin.cshtml";
+}
+
+<h1>Quản Lý Phòng</h1>
+
+<p>
+    @Html.ActionLink("Thêm mới phòng", "Create")
+</p>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh Sách Phòng
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Tên Phòng</th>
+                    <th>Loại Phòng</th>
+                    
+                    <th>Sức Chứa</th>
+                    <th>Đơn Giá</th>
+                    <th>Mô Tả</th>
+
+                    <th>Chức Năng</th>
+                </tr>
+            </thead>
+           
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.tenPhong</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LoaiPhong.tenLP)
+                        </td>
+
+
+                        <td>@item.sucChua</td>
+                        <td>@item.donGia</td>
+                        <td>@item.moTa</td>
+                        @*<td>
+                            <div class="home-sanpham-item_img" style="background-image: url(@item.Image); "></div>
+                            <style>
+                                .home-sanpham-item_img {
+                                    padding-top: 100%;
+                                    background-repeat: no-repeat;
+                                    background-size: contain;
+                                }
+                            </style>
+                        </td>*@
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.maPhong }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.maPhong }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.maPhong })
+                        </td>
+                    </tr>
+                }
+                </tbody>
+           
+        </table>
+    </div>
+</div>
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiPhong.tenLP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tenPhong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sucChua)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.donGia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.moTa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tinhTrang)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiPhong.tenLP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenPhong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sucChua)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.donGia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.moTa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tinhTrang)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maPhong }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maPhong }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maPhong })
+        </td>
+    </tr>
+}
+
+</table>*@

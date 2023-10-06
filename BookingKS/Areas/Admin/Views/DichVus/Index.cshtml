@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BookingKS.Models.DichVu>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Quản Lý Dịch Vụ</h2>
+<p>
+    @Html.ActionLink("Thêm dịch vụ", "Create")
+</p>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh Sách 
+    </div>
+
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Dịch Vụ</th>
+                    <th>Giá Tiền</th>
+
+
+
+                    <th>Chức Năng</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.tenDV</td>
+                        <td>@item.donGia</td>
+
+
+
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.maDV }) |
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.maDV }) |
+                            @Html.ActionLink("Xoá", "Delete", new { id = item.maDV })                         
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

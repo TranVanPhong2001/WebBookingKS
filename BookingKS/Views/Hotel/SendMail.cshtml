@@ -1,0 +1,26 @@
+﻿@model.BookingKS.Models.SendMail
+@{
+    ViewBag.Title = "SendMail";
+    Layout = "~/Views/Shared/_LayoutKhachSan.cshtml";
+}
+
+<h2>SendMail</h2>
+
+<fieldset>
+    <legend>
+        Nhập Gmail của Bạn vào để chúng tôi có thể liên lạc
+    </legend>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+
+        <p>@Html.TextBoxFor(m => m.To)</p>
+
+        <input type="submit" value="Send" />
+    }
+    <br />
+    <span style="color:green">@ViewBag.Message</span>i
+    <br />
+    <a>Lưu ý: kiểm tra thư rác nếu không thấy nhé!</a>
+
+</fieldset>

@@ -1,0 +1,66 @@
+﻿@model BookingKS.Models.PhieuDatPhong
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PhieuDatPhong</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KhachHang.tenKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachHang.tenKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhanVien.tenNV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanVien.tenNV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayDen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayDen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayDi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayDi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tongTienCoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tongTienCoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soNguoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soNguoi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maPDP }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

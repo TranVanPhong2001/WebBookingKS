@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BookingKS.Models.LoaiPhong>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+<h2>DANH SÁCH LOẠI PHÒNG</h2>
+<p>
+    @Html.ActionLink("Thêm mới loại phòng", "Create")
+</p>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh Sách
+    </div>
+    
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Mã Loại</th>
+                    <th>Tên Loại Phòng</th>
+                    
+                    <th>Đơn Giá</th>
+                    
+
+                    <th>Chức Năng</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ma_LP</td>
+                        <td>@item.tenLP</td>
+                       <td>@item.DG</td>
+                        
+                        
+
+                    <td>
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.ma_LP }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.ma_LP }) |
+                        @Html.ActionLink("Xoá", "Delete", new { id = item.ma_LP })
+
+                        @*<a href="@Url.Action("Edit",
+                        new { id = item.ma_LP})" class="edit-btn"><abbr title="Cập nhật dữ liệu"><img src="/images/edit.png" width="20" height="20" /></abbr></a>
+                        <a href="@Url.Action("Details",
+                        new { id = item.ma_LP})" class="edit-btn"><abbr title="Xem chi tiết"><img src="/images/details.png" width="20" height="20" /></abbr></a>
+                        <a href="@Url.Action("Delete",new { id = item.ma_LP})" class="edit-btn"> <i class="fa-sharp fa-solid fa-house"></i>
+                            
+                        </a>*@
+                    </td>
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+   
+    
+
+

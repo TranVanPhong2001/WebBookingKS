@@ -1,0 +1,64 @@
+﻿@model BookingKS.Models.LoaiPhong
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LoaiPhong</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenLP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenLP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinhAnh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MT)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

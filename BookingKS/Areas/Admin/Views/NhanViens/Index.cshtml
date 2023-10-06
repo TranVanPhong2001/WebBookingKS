@@ -1,0 +1,68 @@
+﻿@model IEnumerable<BookingKS.Models.NhanVien>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Quản Lý Nhân Viên</h2>
+
+<p>
+    @Html.ActionLink("Thêm nhân viên", "Create")
+</p>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh Sách 
+    </div>
+
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Tên Nhân Viên</th>
+                    <th>Giới Tính</th>
+
+                    <th>Ngày Sinh</th>
+                    <th>Địa Chỉ</th>
+                    <th>SĐT</th>
+                    <th>Email</th>
+
+                    <th>Chức Năng</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.tenNV</td>
+
+                        <td>@item.gioiTinh</td>
+                        <td>@item.ngaySinh</td>
+                        <td>@item.diaChi</td>
+                        <td>@item.sdt</td>
+                        <td>@item.email</td>
+
+                        @*<td>
+            <div class="home-sanpham-item_img" style="background-image: url(@item.Image); "></div>
+            <style>
+                .home-sanpham-item_img {
+                    padding-top: 100%;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
+            </style>
+        </td>*@
+
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.maNV }) |
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.maNV }) |
+                            @Html.ActionLink("Xoá", "Delete", new { id = item.maNV })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

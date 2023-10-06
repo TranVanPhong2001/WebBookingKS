@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BookingKS.Models.LienHe>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<h2>Thông Tin Liên Hê</h2>
+
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh Sách
+    </div>
+
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Họ Tên</th>
+                    <th>Ngày Gửi</th>
+                    <th>SĐT</th>
+                    <th>Email</th>
+                    
+
+                    <th>Nội Dung</th>
+
+
+
+                    <th>Chức Năng</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.hoTen</td>
+                        <td>@item.ngayGui</td>
+                        <td>
+                            @item.sdt
+                        </td>
+                        <td>@item.email</td>
+
+                        <td>@item.noiDung</td>
+                        @*<td>
+            <div class="home-sanpham-item_img" style="background-image: url(@item.Image); "></div>
+            <style>
+                .home-sanpham-item_img {
+                    padding-top: 100%;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
+            </style>
+        </td>*@
+
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Xoá", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

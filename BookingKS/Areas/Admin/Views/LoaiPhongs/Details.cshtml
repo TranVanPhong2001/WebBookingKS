@@ -1,0 +1,58 @@
+﻿@model BookingKS.Models.LoaiPhong
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LoaiPhong</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenLP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenLP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinhAnh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MT)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ma_LP }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

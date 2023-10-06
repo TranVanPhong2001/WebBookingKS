@@ -1,0 +1,70 @@
+﻿@model BookingKS.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<main aria-labelledby="title">
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 p-0" style="background-image: url(/Content/Theme_KS/img/carousel-2.jpg);">
+        <div class="container-fluid page-header-inner py-5">
+            <div class="container text-center pb-5">
+                <h1 class="display-3 text-white mb-3 animated slideInDown">Trang Đăng Ký</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center text-uppercase">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Hotel")">Trang Chủ</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Đăng Ký</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="row g-3">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-6">
+                <div class="col-form-label">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+                
+            </div>
+        </div>
+        <div class="row g-3">
+            @Html.LabelFor(m => m.Password,"Mật khẩu", new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-6">
+                <div class="col-form-label">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+                
+            </div>
+        </div>
+        <div class="row g-3">
+            @Html.LabelFor(m => m.ConfirmPassword,"Nhập lại mật khẩu", new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-6">
+                <div class="col-form-label">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
+                
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="offset-md-2 col-md-6">
+                <div class="col-form-label">
+                    <input type="submit" value="Đăng ký" class="btn btn-outline-dark" />
+                </div>
+               
+            </div>
+        </div>
+    }
+</main>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
