@@ -9,13 +9,6 @@ namespace BookingKS.Models
     [Table("Phong")]
     public partial class Phong
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Phong()
-        {
-            CT_PhieuDatPhong = new HashSet<CT_PhieuDatPhong>();
-            CT_PhieuThuePhong = new HashSet<CT_PhieuThuePhong>();
-        }
-
         [Key]
         public int maPhong { get; set; }
 
@@ -39,11 +32,9 @@ namespace BookingKS.Models
 
         public int? Luot { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CT_PhieuDatPhong> CT_PhieuDatPhong { get; set; }
+        public int ma_KS { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CT_PhieuThuePhong> CT_PhieuThuePhong { get; set; }
+        public virtual KhachSan KhachSan { get; set; }
 
         public virtual LoaiPhong LoaiPhong { get; set; }
     }

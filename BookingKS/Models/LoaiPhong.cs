@@ -31,6 +31,10 @@ namespace BookingKS.Models
         [StringLength(500)]
         public string MT { get; set; }
 
+        public int ma_KS { get; set; }
+
+        public virtual KhachSan KhachSan { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Phong> Phongs { get; set; }
     }

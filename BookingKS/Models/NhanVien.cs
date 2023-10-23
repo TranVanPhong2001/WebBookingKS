@@ -49,5 +49,7 @@ namespace BookingKS.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuThuePhong> PhieuThuePhongs { get; set; }
+
+        public virtual ICollection<QuanTri> QuanTris { get; set; }
     }
 }
