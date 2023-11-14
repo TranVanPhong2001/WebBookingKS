@@ -268,6 +268,24 @@
             <h6 class="section-title text-center text-primary text-uppercase">Danh sách phòng</h6>
             <h1 class="mb-5">Khám Phá <span class="text-primary text-uppercase">Danh Sách Phòng</span></h1>
         </div>
+
+        <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="@Url.Action("Room", "Hotel")" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#FEA116">
+                Xem Theo Loại Phòng
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="../../?searchString=single">Single</a>
+                <a class="dropdown-item" href="../../?searchString=Triple 2">Triple 2</a>
+                <a class="dropdown-item" href="../../?searchString=Triple 3">Triple 3</a>
+                <a class="dropdown-item" href="../../?searchString=Gia Đình">Gia Đình</a>
+                <a class="dropdown-item" href="../../?searchString=Sang Trọng">Sang Trọng</a>
+                <a class="dropdown-item" href="../../?searchString=Giá Rẻ">Giá Rẻ</a>
+                <a class="dropdown-item" href="../../?searchString=TWIN">TWIN</a>
+            </div>
+            <h1></h1>
+        </div>
+
         <div class="row g-4">
             @foreach (var item in Model)
             {
