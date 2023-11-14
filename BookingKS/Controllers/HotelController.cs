@@ -17,17 +17,29 @@ namespace BookingKS.Controllers
     {
         private HotelContext db = new HotelContext();
         // GET: Hotel
-        public ActionResult Index(int? page)
+        //public ActionResult Index(int? page)
+        //{
+        //    const int PAGE_SIZE = 6; // Số sản phẩm hiển thị trên mỗi trang
+        //    int pageNumber = (page ?? 1); // Trang hiện tại (mặc định là trang 1)
+
+        //    var listHotel = db.Phongs.OrderBy(m => m.maPhong).Skip((pageNumber - 1) * PAGE_SIZE).Take(PAGE_SIZE).ToList();
+
+        //    ViewBag.CurrentPage = pageNumber;
+        //    ViewBag.TotalPages = Math.Ceiling((double)db.Phongs.Count() / PAGE_SIZE);
+
+        //    return View("Index", listHotel);                      
+        //}
+        public ActionResult Index(int? page, string searchString)
         {
-            const int PAGE_SIZE = 6; // Số sản phẩm hiển thị trên mỗi trang
-            int pageNumber = (page ?? 1); // Trang hiện tại (mặc định là trang 1)
+            ViewBag.KeyWord = searchString;
+            if (page == null)
+                page = 1;
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
 
-            var listHotel = db.Phongs.OrderBy(m => m.maPhong).Skip((pageNumber - 1) * PAGE_SIZE).Take(PAGE_SIZE).ToList();
-
+            ViewBag.TotalPages = Math.Ceiling((double)db.Phongs.Count() / pageSize);
             ViewBag.CurrentPage = pageNumber;
-            ViewBag.TotalPages = Math.Ceiling((double)db.Phongs.Count() / PAGE_SIZE);
-
-            return View("Index", listHotel);                      
+            return View(Phong.GetAll(searchString).ToPagedList(page.Value, pageSize));
         }
         public ActionResult Details(int? Id)
         {
