@@ -5,6 +5,7 @@ namespace BookingKS.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Linq;
 
     [Table("Phong")]
     public partial class Phong
@@ -37,5 +38,12 @@ namespace BookingKS.Models
         public virtual KhachSan KhachSan { get; set; }
 
         public virtual LoaiPhong LoaiPhong { get; set; }
+
+        public static List<Phong> GetAll(string searchKey)
+        {
+            HotelContext context = new HotelContext();
+            searchKey = searchKey + "";
+            return context.Phongs.Where(p => p.LoaiPhong.tenLP.Contains(searchKey)).ToList();
+        }
     }
 }
