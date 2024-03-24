@@ -14,6 +14,7 @@ namespace BookingKS.Controllers
 
         public ActionResult SuccessView()
         {
+           
             return View();
         }
 
@@ -49,7 +50,7 @@ namespace BookingKS.Controllers
                             paypalRedirectUrl = lnk.href;
                         }
                     }
-                   
+                    
                     Session.Add(guid, createdPayment.id);
                     return Redirect(paypalRedirectUrl);
                 }
@@ -64,13 +65,14 @@ namespace BookingKS.Controllers
                         return View("FailureView");
                     }
                 }
+                
             }
             catch (Exception ex)
             {
                 return View("FailureView");
             }
-           
-            return RedirectToAction ("Index", "Hotel");
+            
+            return RedirectToAction ("SuccessView", "ShoppingCart");
         }
         private PayPal.Api.Payment payment;
         private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
@@ -143,6 +145,7 @@ namespace BookingKS.Controllers
                 transactions = transactionList,
                 redirect_urls = redirUrls
             };
+           
             // Create a payment using a APIContext  
             return this.payment.Create(apiContext);
         }

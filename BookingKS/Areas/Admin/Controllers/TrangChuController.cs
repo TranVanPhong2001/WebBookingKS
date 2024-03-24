@@ -9,7 +9,7 @@ namespace BookingKS.Areas.Admin.Controllers
     public class TrangChuController : Controller
     {
         // GET: Admin/QLHotel
-        [Authorize]
+       // [Authorize]
         public ActionResult Index()
         {
             return View();

@@ -1,0 +1,58 @@
+﻿@model BookingKS.Models.DanhSachQuyen
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout-Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DanhSachQuyen</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NhomNhanSu.TenNhom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhomNhanSu.TenNhom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quyen.TenQuyen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quyen.TenQuyen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GhiChu)
+        </dd>
+
+    </dl>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Xóa" class="btn btn-primary" /> |
+        @Html.ActionLink("Trở về", "Index")
+    </div>
+}
+
+<style>
+    input, checkbox, select {
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-weight: bolder;
+    }
+</style>

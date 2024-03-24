@@ -21,11 +21,11 @@
                 <tr>
                     <th>Tên Nhân Viên</th>
                     <th>Giới Tính</th>
-
                     <th>Ngày Sinh</th>
                     <th>Địa Chỉ</th>
                     <th>SĐT</th>
                     <th>Email</th>
+                    <th>Ảnh Đại Diện</th>
 
                     <th>Chức Năng</th>
                 </tr>
@@ -36,23 +36,12 @@
                 {
                     <tr>
                         <td>@item.tenNV</td>
-
                         <td>@item.gioiTinh</td>
                         <td>@item.ngaySinh</td>
                         <td>@item.diaChi</td>
                         <td>@item.sdt</td>
-                        <td>@item.email</td>
-
-                        @*<td>
-            <div class="home-sanpham-item_img" style="background-image: url(@item.Image); "></div>
-            <style>
-                .home-sanpham-item_img {
-                    padding-top: 100%;
-                    background-repeat: no-repeat;
-                    background-size: contain;
-                }
-            </style>
-        </td>*@
+                        <td>@item.email</td>  
+                        <td>@item.ImageNV</td>
 
                         <td>
                             @Html.ActionLink("Sửa", "Edit", new { id = item.maNV }) |

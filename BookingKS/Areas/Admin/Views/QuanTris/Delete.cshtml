@@ -1,0 +1,67 @@
+﻿@model BookingKS.Models.QuanTri
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout-Admin.cshtml";
+}
+
+
+
+<h3>Bạn có chắc chắn muốn xóa thông tin này?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NhanVien.tenNV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanVien.tenNV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhomNhanSu.TenNhom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhomNhanSu.TenNhom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tinhTrang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tinhTrang)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-primary" /> |
+            @Html.ActionLink("Quay Lại", "Index")
+        </div>
+    }
+</div>
+<style>
+    input, checkbox, select {
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-weight: bolder;
+    }
+</style>

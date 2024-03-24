@@ -1,0 +1,86 @@
+﻿@model IEnumerable<BookingKS.Models.DanhSachQuyen>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout-Admin.cshtml";
+}
+
+<h2>Danh Sách Quyền</h2>
+
+<p>
+    @Html.ActionLink("Thêm Quyền", "Create")
+</p>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh Sách
+    </div>
+
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Tên Nhân Sự</th>
+                    <th>Tên Quyền</th>
+                    <th>Ghi Chú</th>
+
+                    <th>Chức Năng</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IDNhom</td>
+                        <td>@item.Quyen.TenQuyen</td>
+                        <td>@item.GhiChu</td>
+
+
+                        <td>
+                           
+                            @Html.ActionLink("Xoá", "Delete", new { IDNhom = item.IDNhom, IDQuyen = item.IDQuyen })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NhomNhanSu.TenNhom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quyen.TenQuyen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhomNhanSu.TenNhom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quyen.TenQuyen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GhiChu)
+        </td>
+        <td>
+           
+            @Html.ActionLink("Delete", "Delete", new { IDNhom = item.IDNhom, IDQuyen = item.IDQuyen })
+
+            
+        </td>
+    </tr>
+}
+
+</table>*@

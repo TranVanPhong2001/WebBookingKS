@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BookingKS.Models.NhomNhanSu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout-Admin.cshtml";
+}
+
+<h2>Danh Sách Nhóm Nhân Sự</h2>
+
+<p>
+    @Html.ActionLink("Thêm Nhóm Nhân Sự", "Create")
+</p>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh Sách
+    </div>
+
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>ID Nhân Sự</th>
+                    <th>Tên Nhân Sự</th>
+
+                    <th>Chức Năng</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IDNhom</td>
+                        <td>@item.TenNhom</td>
+
+
+                        <td>
+                           
+                            @Html.ActionLink("Xoá", "Delete", new { id = item.IDNhom })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

@@ -40,7 +40,7 @@ namespace BookingKS.Areas.Admin.Common
         {
             filterContext.Result = new ViewResult
             {
-                ViewName = "~/Views/Shared/401.cshtml"
+                ViewName = "~/Areas/Admin/Views/Shared/401.cshtml"
             };
         }
     }

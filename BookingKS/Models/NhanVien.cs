@@ -12,6 +12,7 @@ namespace BookingKS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NhanVien()
         {
+            QuanTris = new HashSet<QuanTri>();
             HoaDons = new HashSet<HoaDon>();
             PhieuDatPhongs = new HashSet<PhieuDatPhong>();
             PhieuThuePhongs = new HashSet<PhieuThuePhong>();
@@ -42,6 +43,9 @@ namespace BookingKS.Models
         public string ImageNV { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QuanTri> QuanTris { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDon> HoaDons { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -50,6 +54,6 @@ namespace BookingKS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuThuePhong> PhieuThuePhongs { get; set; }
 
-        public virtual ICollection<QuanTri> QuanTris { get; set; }
+        
     }
 }

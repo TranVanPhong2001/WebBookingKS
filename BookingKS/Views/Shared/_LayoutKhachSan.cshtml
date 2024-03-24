@@ -31,6 +31,13 @@
     <link href="~/Content/Theme_KS/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
     <link href="~/Content/Theme_KS/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
+
+    <!--Fchat.vn-->
+    <!--<script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=65378d7523895e057e041753" async="async"></script>-->
+    <!--End of Fchat.vn-->
+   
+
+
     @Styles.Render("~/Content/Theme_KS/css/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -56,26 +63,26 @@
                 </div>
                 <div class="col-lg-9">
                     <!--   <div class="row gx-0 bg-white d-none d-lg-flex">
-                    <div class="col-lg-7 px-5 text-start">
-                        <div class="h-100 d-inline-flex align-items-center py-2 me-4">
-                            <i class="fa fa-envelope text-primary me-2"></i>
-                            <p class="mb-0">info@example.com</p>
+                        <div class="col-lg-7 px-5 text-start">
+                            <div class="h-100 d-inline-flex align-items-center py-2 me-4">
+                                <i class="fa fa-envelope text-primary me-2"></i>
+                                <p class="mb-0">info@example.com</p>
+                            </div>
+                            <div class="h-100 d-inline-flex align-items-center py-2">
+                                <i class="fa fa-phone-alt text-primary me-2"></i>
+                                <p class="mb-0">+012 345 6789</p>
+                            </div>
                         </div>
-                        <div class="h-100 d-inline-flex align-items-center py-2">
-                            <i class="fa fa-phone-alt text-primary me-2"></i>
-                            <p class="mb-0">+012 345 6789</p>
+                        <div class="col-lg-5 px-5 text-end">
+                            <div class="d-inline-flex align-items-center py-2">
+                                <a class="me-3" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="me-3" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="me-3" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="me-3" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="" href=""><i class="fab fa-youtube"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-5 px-5 text-end">
-                        <div class="d-inline-flex align-items-center py-2">
-                            <a class="me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="me-3" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="me-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a class="me-3" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="" href=""><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div> -->
+                    </div> -->
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
                         <a href="#" class="navbar-brand d-block d-lg-none">
                             <h1 class="m-0 text-primary text-uppercase">Hotelier</h1>
@@ -85,29 +92,310 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
-                                <a href="@Url.Action("Index", "Hotel")" class="nav-item nav-link active">Trang Chủ</a>
+                                <a href="@Url.Action("Index", "Hotel")" class="nav-item nav-link ">Trang Chủ</a>
                                 <a href="@Url.Action("About", "Hotel")" class="nav-item nav-link">Giới thiệu</a>
                                 <a href="@Url.Action("Service", "Hotel")" class="nav-item nav-link">Dịch vụ</a>
-                                <a href="@Url.Action("Room", "Hotel")" class="nav-item nav-link">Phòng</a>
+                                <a href="@Url.Action("Index", "Room")" class="nav-item nav-link">Phòng</a>
                                 @*<div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                                    <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="@Url.Action("Booking", "Hotel")" class="dropdown-item">Booking</a>
-                                        <a href="team.html" class="dropdown-item">Our Team</a>
-                                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                    </div>
-                                </div>*@
+                                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                                        <div class="dropdown-menu rounded-0 m-0">
+                                            <a href="@Url.Action("Booking", "Hotel")" class="dropdown-item">Booking</a>
+                                            <a href="team.html" class="dropdown-item">Our Team</a>
+                                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                                        </div>
+                                    </div>*@
                                 <a href="@Url.Action("Contact", "Hotel")" class="nav-item nav-link">Liên Hệ</a>
-                                
+
                             </div>
                             @Html.Partial("_LoginPartial")
                         </div>
                     </nav>
+                    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                    <script>
+                        $(document).ready(function () {
+                            // Lấy đường dẫn hiện tại của trang
+                            var currentPath = window.location.pathname;
+
+                            // Loại bỏ các dấu gạch chéo (/) ở đầu và cuối đường dẫn
+                            currentPath = currentPath.replace(/^\/|\/$/g, '');
+
+                            // Kiểm tra từng liên kết và thêm class "active" cho liên kết có đường dẫn trùng khớp
+                            $('.navbar-nav a').each(function () {
+                                var linkPath = $(this).attr('href').replace(/^\/|\/$/g, '');
+                                if (currentPath === linkPath) {
+                                    $(this).addClass('active');
+                                }
+                            });
+                        });
+                    </script>
+
                 </div>
             </div>
         </div>
         <!-- Header End -->
         @RenderBody()
+        <!-- ChatBot -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+        @*<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />*@
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
+        <link rel="stylesheet" href="~/Content/Theme_KS/css/chat.css">
+
+        <div id="body">
+
+            <div id="chat-circle" class="btn btn-raised">
+                <div id="chat-overlay"></div>
+                @*<i class="material-symbols-rounded">speaker_phone</i>
+                    <span class="material-symbols-outlined">
+                        login
+                    </span>*@
+                <i class="material-symbols-outlined">
+                    chat
+                </i>
+
+            </div>
+
+
+            <div class="chat-box">
+                <div class="chat-box-header">
+                    Hỗ Trợ Khách Hàng
+                    <span class="chat-box-toggle"><i class="material-icons">close</i></span>
+                </div>
+                <div class="chat-box-body">
+                    <div class="chat-box-overlay">
+                    </div>
+                    <div class="chat-logs">
+
+                    </div><!--chat-log -->
+                    <!-- Fchat -->
+                    <button href="#" id="showWebchat">Chat Trực Tiếp Với Nhân Viên Tư Vấn</button>
+                    <script type="text/javascript" id="webchatScript" async="async"></script>
+                    <script>
+                        function loadWebchat() {
+                            if (!document.getElementById('webchatScript').src) {
+                                document.getElementById('webchatScript').src = "https://cdn.fchat.vn/assets/embed/webchat.js?id=65378d7523895e057e041753";
+                                customizeFchatCSS();
+                            }
+                        }
+                        function customizeFchatCSS() {
+                            var customCSS = `
+                                                    /* Đoạn CSS tùy chỉnh của bạn */
+                                                    body {
+                                                        background-color: #f0f0f0;
+                                                    }
+                                                `;
+                            var style = document.createElement('style');
+                            style.type = 'text/css';
+                            style.appendChild(document.createTextNode(customCSS));
+                            document.head.appendChild(style);
+                        }
+
+                        document.getElementById('showWebchat').addEventListener('click', function (event) {
+                            event.preventDefault();
+                            loadWebchat();
+                        });
+                    </script>
+                </div>
+                <div class="chat-msg user">
+                    <div class="button-container">
+                        <button class="cm-msg-text">
+                            <span class="question-button">Làm thế nào để tôi đặt phòng</span>
+                        </button>
+                        <button class="cm-msg-text">
+                            <span class="question-button">Tôi muốn xem các dịch vụ hỗ trợ</span>
+                        </button>
+                        <button class="cm-msg-text">
+                            <span class="question-button">Tôi muốn đăng ký tài khoản người dùng</span>
+                        </button>
+                        <button class="cm-msg-text">
+                            <span class="question-button">Ở đây có bao nhiêu phòng? Có các loại phòng nào</span>
+                        </button>
+
+
+
+                    </div>
+                </div>
+
+
+                <div class="chat-input">
+                    <form>
+                        <input type="text" id="chat-input" placeholder="Send a message..." />
+                        <button type="submit" class="chat-submit" id="chat-submit"><i class="material-icons">send</i></button>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <script>
+            $(function () {
+                var INDEX = 0;
+                // Hàm gửi tin nhắn tự động sau một khoảng thời gian
+                function autoSendMessage(message, delay) {
+                    setTimeout(function () {
+                        generate_message(message, 'user');
+                    }, delay);
+                }
+
+                function autoReply(message) {
+                    setTimeout(function () {
+                        generate_message(message, 'user');
+                    }, 1000);
+                }
+
+                autoSendMessage("Chào mừng bạn đến với website BookingKS!", 2500);
+
+                $("#chat-submit").click(function (e) {
+                    e.preventDefault();
+                    var msg = $("#chat-input").val();
+                    if (msg.trim() == '') {
+                        return false;
+                    }
+                    generate_message(msg, 'self');
+                    handleUserMessage(msg); // Xử lý tin nhắn từ người dùng
+                });
+
+                function generate_message(msg, type) {
+                    INDEX++;
+                    var str = `
+                                                                                <div id='cm-msg-${INDEX}' class="chat-msg ${type}">
+                                                                                    <span class="msg-avatar"></span>
+                                                                                    <div class="cm-msg-text">${msg}</div>
+                                                                                </div>
+                                                                            `;
+                    $(".chat-logs").append(str);
+                    $("#cm-msg-" + INDEX).hide().fadeIn(300);
+                    if (type == 'self') {
+                        $("#chat-input").val('');
+                    }
+                    $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight }, 1000);
+                }
+
+                function handleUserMessage(message) {
+                    // Xử lý tin nhắn từ người dùng ở đây và tạo phản hồi từ chatbot
+                    if (message.toLowerCase().includes("xin chào") || message.toLowerCase().includes("chào")) {
+                        var nowTime = new Date();
+                        var nowHour = nowTime.getHours();
+                        var greeting = '';
+
+                        if (nowHour >= 12 && nowHour <= 16) {
+                            greeting = 'Chào buổi chiều';
+                        } else if (nowHour >= 10 && nowHour < 12) {
+                            greeting = 'Hi';
+                        } else if (nowHour >= 0 && nowHour < 10) {
+                            greeting = 'Chào buổi sáng';
+                        } else {
+                            greeting = 'Chào buổi tối';
+                        }
+
+                        autoReply(greeting);
+                        autoReply("Tôi có thể giúp gì cho bạn?");
+                    } else if (message.toLowerCase().includes("còn phòng nào khác không") || message.toLowerCase().includes("chào")) {
+                        autoReply("Nếu như bạn không thể tìm thấy phòng nghỉ phù hợp với nhu cầu của mình, bạn có thể liên hệ trực tiếp nhân viên để được tư vấn cụ thể. Mọi thông tin chi tiết tại trang 'Liên Hệ'.");
+                    } else {
+                        autoReply("Xin lỗi, tôi không hiểu câu hỏi của bạn. Vui lòng thử lại hoặc liên hệ với chúng tôi.");
+                    }
+                }
+
+                // Thêm các xử lý cho tin nhắn từ người dùng ở đây
+
+                //$(document).delegate(".question-button", "click", function () {
+                //    var questionText = $(this).text();
+                //    var answer = getAnswerForQuestion(questionText);
+                //    generate_message(questionText, 'self');
+                //    generate_message(answer, 'user');
+                //});
+
+
+                function generate_button_message(msg, buttons) {
+                    /* Buttons should be object array
+                      [
+                        {
+                          name: 'Existing User',
+                          value: 'existing'
+                        },
+                        {
+                          name: 'New User',
+                          value: 'new'
+                        }
+                      ]
+                    */
+                    INDEX++;
+                    var btn_obj = buttons.map(function (button) {
+                        return "              <li class=\"button\"><a href=\"javascript:;\" class=\"btn btn-primary chat-btn\" chat-value=\"" + button.value + "\">" + button.name + "<\/a><\/li>";
+                    }).join('');
+                    var str = "";
+                    str += "<div id='cm-msg-" + INDEX + "' class=\"chat-msg user\">";
+                    str += "          <span class=\"msg-avatar\">";
+                    str += "            <img src=\"https:\/\/image.crisp.im\/avatar\/operator\/196af8cc-f6ad-4ef7-afd1-c45d5231387c\/240\/?1483361727745\">";
+                    str += "          <\/span>";
+                    str += "          <div class=\"cm-msg-text\">";
+                    str += msg;
+                    str += "          <\/div>";
+                    str += "          <div class=\"cm-msg-button\">";
+                    str += "            <ul>";
+                    str += btn_obj;
+                    str += "            <\/ul>";
+                    str += "          <\/div>";
+                    str += "        <\/div>";
+                    $(".chat-logs").append(str);
+                    $("#cm-msg-" + INDEX).hide().fadeIn(300);
+                    $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight }, 1000);
+                    $("#chat-input").attr("disabled", true);
+                }
+
+                $(document).delegate(".chat-btn", "click", function () {
+                    var value = $(this).attr("chat-value");
+                    var name = $(this).html();
+                    $("#chat-input").attr("disabled", false);
+                    generate_message(name, 'self');
+                })
+
+                $("#chat-circle").click(function () {
+                    $("#chat-circle").toggle('scale');
+                    $(".chat-box").toggle('scale');
+                })
+
+                $(".chat-box-toggle").click(function () {
+                    $("#chat-circle").toggle('scale');
+                    $(".chat-box").toggle('scale');
+                })
+
+                $(document).delegate(".question-button", "click", function () {
+                    var questionText = $(this).text();
+                    var answer = getAnswerForQuestion(questionText);
+                    generate_message(questionText, 'self');
+                    generate_message(answer, 'user');
+
+                });
+
+                function getAnswerForQuestion(questionText) {
+                    // Thêm logic để xác định câu trả lời dựa trên câu hỏi
+                    if (questionText.includes("Làm thế nào để tôi đặt phòng")) {
+                        return "Để đặt phòng, điều đầu tiên bạn cần làm chọn phòng phù hợp với nhu cầu của mình, sau đó ấn vào nút Đặt Ngay. Tiếp theo, bạn chỉ cần điền thông tin cá nhân và Xác Nhận";
+                    } else if (questionText.includes("Tôi muốn xem các dịch vụ hỗ trợ")) {
+                        return "Mọi dịch vụ của BookingHotel đều có tại trang Dịch Vụ, bạn chỉ cần nhấn vào đó!";
+                    } else if (questionText.includes("Tôi muốn đăng ký tài khoản người dùng")) {
+                        return "Để đăng kí tài khoản người dùng, bạn chỉ cần nhấn vào nút đăng kí có tại trang chủ. Tiếp theo điền thông tin của bạn sau đó nhấn vào nút Đăng Kí";
+                    } else if (questionText.includes("Ở đây có bao nhiêu phòng? Có các loại phòng nào")) {
+                        return "Hiện tại, BookingHotel có 123 phòng. Bao gồm các loại phòng : Gia Đình, Giá Rẻ, Cặp Đôi, Sang Trọng!";
+                    }
+                    // Thêm các câu trả lời cho câu hỏi khác ở đây
+                }
+
+
+            })
+        </script>
+        <!-- Chatbot end -->
         <!-- Newsletter Start -->
         <div class="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="row justify-content-center">
@@ -210,6 +498,9 @@
     <script src="~/Content/Theme_KS/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Template Javascript -->
     <script src="~/Content/Theme_KS/js/main.js"></script>
+
+
+
 
     @RenderSection("scripts", required: false)
 

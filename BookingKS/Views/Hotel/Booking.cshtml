@@ -102,55 +102,104 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="tenKH" id="name" placeholder="Your Name">
+                                <input type="text" class="form-control" name="tenKH" id="name" placeholder="Your Name" required>
                                 <label for="name">Họ tên</label>
+                                <p class="help-block"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                                 <label for="email">Email</label>
+                                <p class="help-block"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="CCCD" id="cccd" placeholder="Your Cccd">
+                                <input type="text" class="form-control" name="CCCD" id="cccd" placeholder="Your Cccd" required>
                                 <label for="cccd">CCCD</label>
+                                <p class="help-block"></p>
                             </div>
                         </div>
+                        @*<div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="gioiTinh" id="gioitinh" placeholder="Your GioiTinh" required>
+                                <label for="gioitinh">Giới tính</label>
+                                <p class="help-block"></p>
+                            </div>
+                        </div>*@
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="gioiTinh" id="gioitinh" placeholder="Your Email">
+                                <select class="form-control" name="gioiTinh" id="gioitinh" placeholder="Your Gender">
+                                    <option value="nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
                                 <label for="gioitinh">Giới tính</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating date" id="date3" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" name="ngayDen" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
+                                <input type="datetime-local" class="form-control datetimepicker-input" name="ngayDen" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" required />
                                 <label for="checkin">Ngày đến</label>
+                                <p class="help-block"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating date" id="date4" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" name="ngayDi" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
-                                <label for="checkout">Ngày đi</label>
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                <input type="datetime-local" class="form-control datetimepicker-input" name="ngayDi" id="checkin" placeholder="Check In" data-target="#date4" data-toggle="datetimepicker" required />
+                                <label for="checkin">Ngày đi</label>
+                                <p class="help-block"></p>
                             </div>
                         </div>
+
+                        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                        <script>
+                            $(document).ready(function () {
+                                // Lấy ngày và giờ hiện tại
+                                var currentDate = new Date();
+                                var currentDateString = currentDate.toISOString().slice(0, 16);
+
+                                // Thiết lập giá trị min cho cả hai trường
+                                $('input[name="ngayDen"]').attr('min', currentDateString);
+                                $('input[name="ngayDi"]').attr('min', currentDateString);
+
+                                // Theo dõi sự kiện input để cập nhật giá trị min khi người dùng chọn ngày
+                                $('input[name="ngayDen"]').on('input', function () {
+                                    $('input[name="ngayDi"]').attr('min', $(this).val());
+                                });
+
+                                $('input[name="ngayDi"]').on('input', function () {
+                                    $('input[name="ngayDen"]').attr('max', $(this).val());
+                                });
+                            });
+                        </script>
+
+
+
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="sdt" id="sdt" placeholder="Your Email">
+                                <input type="text" class="form-control" name="sdt" id="sdt" placeholder="Your Sdt" required>
                                 <label for="sdt">Số điện thoại</label>
+                                <p class="help-block"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="soNguoi" id="songuoi" placeholder="Your Email">
+                                <input type="text" class="form-control" name="soNguoi" id="songuoi" placeholder="SL người" required>
                                 <label for="songuoi">Số người ở</label>
+                                <p class="help-block"></p>
                             </div>
                         </div>
-
-
-
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <div class="control-group form-group">
+                                    <label class="contact-p1">Tiền cọc:</label>
+                                    <input type="text" class="form-control" name="tongTienCoc" id="tongtiencoc" value="@ViewBag.TienCoc" disabled="disabled">
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-12">
                             <div class="form-floating">
                                 <div class="control-group form-group" style="display:none">
@@ -158,10 +207,9 @@
                                     <input type="text" class="form-control" name="maPhong" id="name" value="@ViewBag.MaPhongID">
                                     <p class="help-block"></p>
                                 </div>
-
                                 <div class="control-group form-group">
                                     <label class="contact-p1">Phòng đã chọn:</label>
-                                    <input type="text" class="form-control" id="name" value="@ViewBag.MaPhong2">
+                                    <input type="text" class="form-control" id="name" value="@ViewBag.MaPhong2" readonly="readonly" disabled="disabled">
                                     <p class="help-block"></p>
                                 </div>
 
@@ -171,8 +219,9 @@
 
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Special Request" name="diaChi" id="message" style="height: 100px"></textarea>
+                                <textarea class="form-control" placeholder="Special Request" name="diaChi" id="message" style="height: 100px" required> </textarea>
                                 <label for="message">Địa chỉ</label>
+                                <p class="help-block"></p>
                             </div>
                         </div>
 
@@ -180,19 +229,19 @@
 
                         <div class="col-12">
                             <button class="btn btn-primary w-100" id="btn" onclick="myFunction()">Xác nhận</button>
-                            <script>
-                                function myFunction() {
-                                    alert("Bạn đã đặt phòng thành công. Vui lòng thanh toán để hoàn tất");
-                                }
-                            </script>
                         </div>
+                        @*<script>
+                            function myFunction() {
+                                alert("Bạn đã đặt phòng thành công. Vui lòng thanh toán để hoàn tất");
+                            }
+                        </script>*@
 
                         @*<div class="col-12">
                             <a href="/ShoppingCart/PaymentWithPaypal" class="btn btn-success">Thanh Toán</a>
-                           
+
                         </div>*@
                     </div>
-                    }
+                     }
 
                 </div>
             </div>

@@ -4,14 +4,15 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết</h2>
 
 <div>
-    <h4>NhanVien</h4>
+    <h4>Nhân Viên</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.tenNV)
+            
+            @Html.LabelFor(model => model.tenNV, "Tên NV", htmlAttributes: new { @class = "control-label col-md-2" })
         </dt>
 
         <dd>
@@ -69,6 +70,15 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.maNV }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.maNV }) |
+    @Html.ActionLink("Quay lại", "Index")
 </p>
+<style>
+    input, checkbox, select {
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-weight: bolder;
+    }
+</style>

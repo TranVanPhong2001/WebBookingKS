@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BookingKS.Areas.Admin.Common;
 using BookingKS.Models;
 
 namespace BookingKS.Areas.Admin.Controllers
@@ -17,7 +18,7 @@ namespace BookingKS.Areas.Admin.Controllers
 
      
         // GET: Admin/Phongs
-        [Authorize]
+        //[Authorize]
         public ActionResult Index()
         {
             var phongs = db.Phongs.Include(p => p.LoaiPhong);
@@ -40,9 +41,11 @@ namespace BookingKS.Areas.Admin.Controllers
         }
 
         // GET: Admin/Phongs/Create
+        [HasCredential(IDQuyen = "QUANLYPHONG")]
         public ActionResult Create()
         {
             ViewBag.maLP = new SelectList(db.LoaiPhongs, "ma_LP", "tenLP");
+            
             return View();
         }
 
@@ -51,6 +54,7 @@ namespace BookingKS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [HasCredential(IDQuyen = "QUANLYPHONG")]
         public ActionResult Create([Bind(Include = "maPhong,tenPhong,maLP,Image,sucChua,donGia,moTa,tinhTrang")] Phong phong, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
@@ -69,10 +73,12 @@ namespace BookingKS.Areas.Admin.Controllers
             }
 
             ViewBag.maLP = new SelectList(db.LoaiPhongs, "ma_LP", "tenLP", phong.maLP);
+            
             return View(phong);
         }
 
         // GET: Admin/Phongs/Edit/5
+        [HasCredential(IDQuyen = "QUANLYPHONG")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,6 +99,7 @@ namespace BookingKS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [HasCredential(IDQuyen = "QUANLYPHONG")]
         public ActionResult Edit([Bind(Include = "maPhong,tenPhong,maLP,Image,sucChua,donGia,moTa,tinhTrang")] Phong phong)
         {
             if (ModelState.IsValid)
@@ -106,6 +113,7 @@ namespace BookingKS.Areas.Admin.Controllers
         }
 
         // GET: Admin/Phongs/Delete/5
+        [HasCredential(IDQuyen = "QUANLYPHONG")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -121,6 +129,7 @@ namespace BookingKS.Areas.Admin.Controllers
         }
 
         // POST: Admin/Phongs/Delete/5
+        [HasCredential(IDQuyen = "QUANLYPHONG")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

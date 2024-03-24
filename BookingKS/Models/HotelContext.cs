@@ -12,34 +12,27 @@ namespace BookingKS.Models
         {
         }
 
-        public virtual DbSet<CT_PhieuDatPhong> CT_PhieuDatPhong { get; set; }
-        public virtual DbSet<CT_PhieuThuePhong> CT_PhieuThuePhong { get; set; }
+        //public virtual DbSet<CT_PhieuDatPhong> CT_PhieuDatPhong { get; set; }
+        //public virtual DbSet<CT_PhieuThuePhong> CT_PhieuThuePhong { get; set; }
         public virtual DbSet<DichVu> DichVus { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
         public virtual DbSet<LienHe> LienHes { get; set; }
         public virtual DbSet<LoaiPhong> LoaiPhongs { get; set; }
-        public virtual DbSet<NhanVien> NhanViens { get; set; }
-      
+        public virtual DbSet<NhanVien> NhanViens { get; set; }    
         public virtual DbSet<PhieuThuePhong> PhieuThuePhongs { get; set; }
         public virtual DbSet<Phong> Phongs { get; set; }
-
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<PhieuDatPhong> PhieuDatPhongs { get; set; }
-
-
-        public virtual DbSet<DanhSachQuyen> DanhSachQuyens { get; set; }
-        public virtual DbSet<KhachSan> KhachSans { get; set; }
-        
-        public virtual DbSet<NhomNhanSu> NhomNhanSus { get; set; }
-        
+        public virtual DbSet<DanhSachQuyen> DanhSachQuyens { get; set; }     
+        public virtual DbSet<NhomNhanSu> NhomNhanSus { get; set; }      
         public virtual DbSet<QuanTri> QuanTris { get; set; }
         public virtual DbSet<Quyen> Quyens { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CT_PhieuDatPhong>()
-                .Property(e => e.tienCoc)
-                .HasPrecision(18, 0);
+            //modelBuilder.Entity<CT_PhieuDatPhong>()
+            //    .Property(e => e.tienCoc)
+            //    .HasPrecision(18, 0);
 
             modelBuilder.Entity<DichVu>()
                 .Property(e => e.donGia)
@@ -61,17 +54,18 @@ namespace BookingKS.Models
                 .Property(e => e.sdt)
                 .IsUnicode(false);
 
-           
-
             modelBuilder.Entity<NhanVien>()
                 .Property(e => e.sdt)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<NhanVien>()
+                .HasMany(e => e.QuanTris)
+                .WithRequired(e => e.NhanVien)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<PhieuDatPhong>()
                 .Property(e => e.tongTienCoc)
-                .HasPrecision(18, 0);
-
-           
+                .HasPrecision(18, 0);           
 
             modelBuilder.Entity<DanhSachQuyen>()
                .Property(e => e.IDNhom)
@@ -81,15 +75,7 @@ namespace BookingKS.Models
                 .Property(e => e.IDQuyen)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<KhachSan>()
-                .HasMany(e => e.LoaiPhongs)
-                .WithRequired(e => e.KhachSan)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<KhachSan>()
-                .HasMany(e => e.Phongs)
-                .WithRequired(e => e.KhachSan)
-                .WillCascadeOnDelete(false);
+            
 
             modelBuilder.Entity<LoaiPhong>()
                 .Property(e => e.tenLP)

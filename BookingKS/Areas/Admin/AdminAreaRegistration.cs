@@ -17,7 +17,7 @@ namespace BookingKS.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { controller ="TrangChu", action = "Index", id = UrlParameter.Optional }
+                new { controller ="Login", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

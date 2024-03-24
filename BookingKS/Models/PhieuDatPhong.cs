@@ -12,7 +12,7 @@ namespace BookingKS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PhieuDatPhong()
         {
-            CT_PhieuDatPhong = new HashSet<CT_PhieuDatPhong>();
+            //CT_PhieuDatPhong = new HashSet<CT_PhieuDatPhong>();
             PhieuThuePhongs = new HashSet<PhieuThuePhong>();
         }
 
@@ -20,31 +20,29 @@ namespace BookingKS.Models
         public int maPDP { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? ngayDen { get; set; }
+        public DateTime ngayDen { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? ngayDi { get; set; }
+        public DateTime ngayDi { get; set; }
 
-        public decimal? tongTienCoc { get; set; }
+        public decimal tongTienCoc { get; set; }
 
-        public int? soNguoi { get; set; }
+        public int soNguoi { get; set; }
 
-        public int? maKH { get; set; }
+        public int maKH { get; set; }
 
-        public int? maNV { get; set; }
+        public int maNV { get; set; }
+
+        public int ?maPhong { get; set; }
+
+        public bool tinhTrang { get; set; }
+
 
         
-
-        
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CT_PhieuDatPhong> CT_PhieuDatPhong { get; set; }
-
+        //  public virtual ICollection<CT_PhieuDatPhong> CT_PhieuDatPhong { get; set; }
+        public virtual Phong Phong { get; set; }
         public virtual KhachHang KhachHang { get; set; }
-
-        public virtual NhanVien NhanVien { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual NhanVien NhanVien { get; set; }       
         public virtual ICollection<PhieuThuePhong> PhieuThuePhongs { get; set; }
     }
 }

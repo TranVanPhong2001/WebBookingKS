@@ -1,0 +1,63 @@
+﻿@model BookingKS.Models.NhanVien
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout-Admin.cshtml";
+    //string gtinh = "";
+}
+
+<table cellpadding="0" cellspacing="0" style="font-size:20px;margin-left:50px;">
+    <tr>
+        <td>
+            <table cellpadding="2" cellspacing="10">
+                <caption><b>THÔNG TIN CHI TIẾT</b></caption>
+                <tr>
+                    <td rowspan="8"><img src="@Html.DisplayFor(model => model.ImageNV)" width="300" height="300" /></td>
+                    <td>Mã nhân viên:</td>
+                    <td>@Html.DisplayFor(model => model.maNV)</td>
+                </tr>
+                <tr>
+                    <td>Tên nhân viên:</td>
+                    <td>@Html.DisplayFor(model => model.tenNV)</td>
+                </tr>
+                <tr>
+                    <td>Giới tính:</td>
+                    <td>@Html.DisplayFor(model => model.gioiTinh)</td>
+                    @*<td>
+                        @{if (Model.gioiTinh == true)
+                            { gtinh = "Nam"; }
+                        else
+                            { gtinh = "Nữ"; }
+                         }
+                        @gtinh
+                    </td>*@
+                </tr>
+                <tr>
+                    <td>Ngày sinh:</td>
+                    <td>@{string ngaySinh = Model.ngaySinh.ToString(); } @ngaySinh</td>     @* //ToString("dd/MM/yyyy"); } @ngaySinh</td>*@
+                </tr>
+                <tr>
+                    <td>Địa chỉ:</td>
+                    <td>@Html.DisplayFor(model => model.diaChi)</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>@Html.DisplayFor(model => model.email)</td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại:</td>
+                    <td>@Html.DisplayFor(model => model.sdt)</td>
+                </tr>
+                <tr>
+                    <td>Nhóm nhân viên:</td>
+                    <td>@Html.DisplayFor(model => model.QuanTris.Where(x => x.maNV == model.maNV).FirstOrDefault().NhomNhanSu.TenNhom)</td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+<p style="margin-left:50px;">
+    @*@Html.ActionLink("Cập nhật", "Edit")*@ 
+    
+    @Html.ActionLink("Quay lại", "Index", "TrangChu")
+</p>

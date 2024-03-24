@@ -3,9 +3,6 @@
     ViewBag.Title = "Index";
 }
 
-<h1>""</h1>
-
-
 <p>KHÁCH SẠN</p>
 <hr>
 <div class="row">
@@ -89,7 +86,7 @@
         </a>
     </div>
 
-    <div class="col-xl-3 col-md-6 mb-4">
+    @*<div class="col-xl-3 col-md-6 mb-4">
         <a class="card border-left-dark shadow h-100 py-2 stretched-link" href="@Url.Action("Index", "KiemTraPhongTrong")">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -102,7 +99,7 @@
                 </div>
             </div>
         </a>
-    </div>
+    </div>*@
 
     <div class="col-xl-3 col-md-6 mb-4">
         <a class="card border-left-warning shadow h-100 py-2 stretched-link" href="@Url.Action("Index", "HoaDons")">
@@ -154,7 +151,7 @@
         </a>
     </div>
 
-    <div class="col-xl-3 col-md-6 mb-4">
+    @*<div class="col-xl-3 col-md-6 mb-4">
         <a class="card border-left-info shadow h-100 py-2 stretched-link notification" href="@Url.Action("Index", "PhanHois")">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -168,10 +165,10 @@
             </div>
             <div class="txt">@ViewBag.PhanHoi</div>
         </a>
-    </div>
+    </div>*@
 </div>
 <br />
-<p>NGƯỜI DÙNG</p>
+<p>QUẢN TRỊ</p>
 <hr>
 <div class="row">
     <div class="col-xl-3 col-md-6 mb-4">
@@ -205,11 +202,11 @@
     </div>
 
     <div class="col-xl-3 col-md-6 mb-4">
-        <a class="card border-left-dark shadow h-100 py-2 stretched-link" href="@Url.Action("Index", "NhomNhanViens")">
+        <a class="card border-left-dark shadow h-100 py-2 stretched-link" href="@Url.Action("Index", "NhomNhanSus")">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="mb-0 font-weight-bold text-dark text-uppercase">Nhóm nhân viên</div>
+                        <div class="mb-0 font-weight-bold text-dark text-uppercase">Nhóm nhân sự</div>
                     </div>
                     <div class="col-auto">
                         <i class="fa fa-users fa-2x text-gray-300"></i>

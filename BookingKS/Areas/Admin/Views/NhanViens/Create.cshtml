@@ -2,10 +2,11 @@
 
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout-Admin.cshtml";
 }
 
 <h2></h2>
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "NhanViens", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -61,22 +62,31 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.ImageNV, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageNV, "Hình ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ImageNV, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ImageNV, new { htmlAttributes = new { @class = "form-control", type = "file" } })
                 @Html.ValidationMessageFor(model => model.ImageNV, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Thêm mới" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Quay lại", "Index")
 </div>
+<style>
+    input, checkbox, select {
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-weight: bolder;
+    }
+</style>

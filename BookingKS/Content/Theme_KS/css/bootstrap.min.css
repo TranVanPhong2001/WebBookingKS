@@ -7694,6 +7694,9 @@ textarea.form-control-lg {
 .text-center {
     text-align: center !important
 }
+.dropdown {
+    text-align: left;
+}
 
 .text-decoration-none {
     text-decoration: none !important

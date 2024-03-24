@@ -12,7 +12,7 @@ namespace BookingKS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DichVu()
         {
-            CT_PhieuThuePhong = new HashSet<CT_PhieuThuePhong>();
+          //  CT_PhieuThuePhong = new HashSet<CT_PhieuThuePhong>();
         }
 
         [Key]
@@ -23,7 +23,7 @@ namespace BookingKS.Models
 
         public decimal? donGia { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CT_PhieuThuePhong> CT_PhieuThuePhong { get; set; }
+        
+        
     }
 }

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BookingKS.Models.QuanTri>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>DANH SÁCH TÀI KHOẢN NHÂN VIÊN</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới tài khoản", "Create")
+</p>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh Sách
+    </div>
+
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Tài Khoản</th>
+                    <th>Mật Khẩu</th>
+                    <th>Tình Trạng</th>
+                    <th>Nhân Viên</th>
+                    <th>Chức Vụ</th>
+
+                    <th>Chức Năng</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.username</td>
+                        <td>@item.password</td>
+                        <td>
+                            @(item.tinhTrang ? "Hoạt động" : "Tạm khóa")
+                        </td>
+                        <td>@item.NhanVien.tenNV</td>
+                        <td>@item.NhomNhanSu.TenNhom</td>
+
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.username }) |
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.username }) |
+                            @Html.ActionLink("Xoá", "Delete", new { id = item.username })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

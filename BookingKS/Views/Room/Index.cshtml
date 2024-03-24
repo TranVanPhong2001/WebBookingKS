@@ -1,0 +1,232 @@
+﻿@model IEnumerable<BookingKS.Models.Phong>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutKhachSan.cshtml";
+}
+
+<div class="container-xxl bg-white p-0">
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 p-0" style="background-image: url(/Content/Theme_KS/img/carousel-1.jpg);">
+        <div class="container-fluid page-header-inner py-5">
+            <div class="container text-center pb-5">
+                <h1 class="display-3 text-white mb-3 animated slideInDown">Phòng</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center text-uppercase">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Hotel")">Trang chủ</a></li>
+
+                        <li class="breadcrumb-item text-white active" aria-current="page">Phòng</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+    <!-- Booking Start -->
+    <div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="bg-white shadow" style="padding: 35px;">
+                <div class="row g-2">
+                    <div class="col-md-10">
+                        <div class="row g-2">
+                            <div class="col-md-3">
+                                <div class="date" id="date1" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input"
+                                           placeholder="Ngày đến" data-target="#date1" data-toggle="datetimepicker" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="date" id="date2" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" placeholder="Ngày đi" data-target="#date2" data-toggle="datetimepicker" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select">
+                                    <option selected>Số người</option>
+                                    <option value="1">1 người</option>
+                                    <option value="2">2 người</option>
+                                    <option value="3">3 người</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select">
+                                    <option selected>Loại phòng</option>
+                                    <option value="1">Gia đình</option>
+                                    <option value="2">Cặp đôi</option>
+                                    <option value="3">Sang trọng</option>
+                                    <option value="4">Giá rẻ</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary w-100">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Booking End -->
+    <!-- Room Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title text-center text-primary text-uppercase">Danh sách phòng</h6>
+                <h1 class="mb-5">Khám Phá <span class="text-primary text-uppercase">Danh Sách Phòng</span></h1>
+                @*@using (Html.BeginForm("Search", "Room", FormMethod.Get))
+                {
+                    <p>
+                        @Html.TextBox("searchString")
+                        <input type="submit" value="Search" />
+                    </p>
+                    
+                    @Html.DropDownListFor(model => model, null, htmlAttributes: new { @class = "form-control" })
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                }*@
+
+            <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#FEA116">
+                    Xem Theo Loại Phòng
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="../../Room/?searchString=single">Single</a>
+                    <a class="dropdown-item" href="../../Room/?searchString=Triple 2">Triple 2</a>
+                    <a class="dropdown-item" href="../../Room/?searchString=Triple 3">Triple 3</a>
+                    <a class="dropdown-item" href="../../Room/?searchString=Gia Đình">Gia Đình</a>
+                    <a class="dropdown-item" href="../../Room/?searchString=Sang Trọng">Sang Trọng</a>
+                    <a class="dropdown-item" href="../../Room/?searchString=Giá Rẻ">Giá Rẻ</a>
+                    <a class="dropdown-item" href="../../Room/?searchString=TWIN">TWIN</a>
+                </div>
+                 
+                @*<h2>Chọn loại phòng</h2>
+
+        @using (Html.BeginForm("Index", "Room", FormMethod.Post))
+        {
+            @Html.DropDownListFor(model => model, new SelectList(ViewBag.ma_LP, "maLP", "ten_LP"), "Chọn loại phòng", new { @class = "form-control" })
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        }*@
+                <h1></h1>
+            </div>
+            <div class="timkiem">
+                    @using (Html.BeginForm("Search", "Room", FormMethod.Get))
+                    {
+                        <p>
+                            @Html.TextBox("searchString")
+                            <input type="submit" value="Tìm kiếm" />
+                        </p>
+                    }
+                </div>  
+            </div>
+            <div class="row g-4">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="room-item shadow rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="@item.Image" alt="">
+                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">@item.donGia VND/ Đêm</small>
+                            </div>
+                            <div class="p-4 mt-2">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0">@item.LoaiPhong.tenLP</h5>
+                                    <div class="ps-2">
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                    <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+                                </div>
+                                <p class="text-body mb-3"> @item.moTa</p>
+                                <div class="d-flex justify-content-between">
+                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="@Url.Action("Details", "Room", new {id = item.maPhong})">Chi tiết</a>
+                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="@Url.Action("Booking", "Hotel", new {id = item.maPhong})">Đặt Ngay</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- Hiển thị phân trang -->
+            @if (ViewBag.TotalPages > 1)
+            {
+                <div class="pagination-centered">
+                    <div>
+                        Trang @ViewBag.CurrentPage /@ViewBag.TotalPages
+                    </div>
+                    <ul class="pagination">
+                        @if (ViewBag.CurrentPage > 1)
+                        {
+                            <li><a href="/Room/Index?page=@(ViewBag.CurrentPage - 1)" class="page-link">&laquo;</a></li>
+                        }
+
+                        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                        {
+                            <li class="@(i == ViewBag.CurrentPage ? "active" : "")"><a href="/Room/Index?page=@i" class="page-link">@i</a></li>
+                        }
+
+                        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                        {
+                            <li><a href="/Room/Index?page=@(ViewBag.CurrentPage + 1)" class="page-link">&raquo;</a></li>
+                        }
+                    </ul>
+                </div>
+            }
+
+        </div>
+
+    </div>
+    <!-- Room End -->
+    <!-- Testimonial Start -->
+    <div class="container-xxl testimonial my-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="owl-carousel testimonial-carousel py-5">
+                <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
+                    <p>Mọi Thứ Tuyệt Vời</p>
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid flex-shrink-0 rounded" src="/Content/Theme_KS/img/testimonial-1.jpg" style="width: 45px; height: 45px;">
+                        <div class="ps-3">
+                            <h6 class="fw-bold mb-1">Huy</h6>
+                            <small>Tiktoker</small>
+                        </div>
+                    </div>
+                    <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
+                </div>
+                <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
+                    <p>Mọi Thứ Tuyệt Vời</p>
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid flex-shrink-0 rounded" src="/Content/Theme_KS/img/testimonial-2.jpg" style="width: 45px; height: 45px;">
+                        <div class="ps-3">
+                            <h6 class="fw-bold mb-1">Phúc</h6>
+                            <small>Gamer</small>
+                        </div>
+                    </div>
+                    <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
+                </div>
+                <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
+                    <p>Mọi Thứ Tuyệt Vời</p>
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid flex-shrink-0 rounded" src="/Content/Theme_KS/img/testimonial-3.jpg" style="width: 45px; height: 45px;">
+                        <div class="ps-3">
+                            <h6 class="fw-bold mb-1">Sĩ</h6>
+                            <small>Sale</small>
+                        </div>
+                    </div>
+                    <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+
+
+</div>

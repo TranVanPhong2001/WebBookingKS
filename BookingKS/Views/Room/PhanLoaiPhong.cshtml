@@ -1,0 +1,19 @@
+﻿@model BookingKS.Models.Phong
+@{
+    ViewBag.Title = "PhanLoaiPhong";
+    Layout = "~/Views/Shared/_LayoutKhachSan.cshtml";
+}
+
+<h2>PhanLoaiPhong</h2>
+
+@using (Html.BeginForm("PhanLoaiPhong", "Room", FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("searchString")
+        <input type="submit" value="Search" />
+    </p>
+
+    @Html.DropDownListFor(model => model.maLP, null, htmlAttributes: new { @class = "form-control" })
+        <input type="submit" value="phanloaiphong" class="btn btn-primary" />
+}
+

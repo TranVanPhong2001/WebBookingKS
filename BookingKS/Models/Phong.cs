@@ -16,14 +16,14 @@ namespace BookingKS.Models
         [StringLength(50)]
         public string tenPhong { get; set; }
 
-        public int? maLP { get; set; }
+        public int ?maLP { get; set; }
 
         [StringLength(250)]
         public string Image { get; set; }
 
-        public int? sucChua { get; set; }
+        public int sucChua { get; set; }
 
-        public decimal? donGia { get; set; }
+        public decimal donGia { get; set; }
 
         [StringLength(500)]
         public string moTa { get; set; }
@@ -31,12 +31,8 @@ namespace BookingKS.Models
         [StringLength(50)]
         public string tinhTrang { get; set; }
 
-        public int? Luot { get; set; }
-
-        public int ma_KS { get; set; }
-
-        public virtual KhachSan KhachSan { get; set; }
-
+        public int Luot { get; set; }
+      
         public virtual LoaiPhong LoaiPhong { get; set; }
 
         public static List<Phong> GetAll(string searchKey)

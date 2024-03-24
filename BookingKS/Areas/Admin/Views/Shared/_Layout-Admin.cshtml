@@ -1,4 +1,9 @@
 ﻿@using Microsoft.AspNet.Identity
+@{
+    Layout = null;
+    var session = (BookingKS.Areas.Admin.Common.UserLogin)Session[BookingKS.Areas.Admin.Common.CommonConstants.USER_SESSION];
+    string avatar = "" + session.Avatar;
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +16,16 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="~/Areas/Admin/Content/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        .tabA {
+            text-decoration: none !important;
+        }
+
+        .nav-link .img-profile {
+            height: 2rem;
+            width: 2rem
+        }
+    </style>
 </head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -19,37 +34,54 @@
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-            </div>
-        </form>
+        <!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <div class="input-group">
+            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+            <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+        </div>
+        </form> -->
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item dropdown">
+            <!--<li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                    
-
-                    @if (Request.IsAuthenticated)
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">-->
+            @*@if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
-                        using (Html.BeginForm("LogOff", "Account",new { area= ""}, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                        {
-                            @Html.AntiForgeryToken()
+                        @Html.AntiForgeryToken()
+                        <li>
+                            @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "dropdown-item" })
+                        </li>
+                        <li><a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
 
-                           
-                                <li>
-                                    @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "dropdown-item" })
-                                </li>
-                                <li><a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
-                           
-                        }
                     }
-                    
-                    
-                </ul>
+                }*@
+            <!--</ul>
+            </li>-->
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@session.UserName</span>
+                    <img class="img-profile rounded-circle"
+                         src="@avatar">
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="@Url.Action("Index", "ThongTinTK")">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Thông tin tài khoản
+                    </a>
+                    <a class="dropdown-item" href="@Url.Action("DoiMatKhau", "ThongTinTK")">
+                        <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Đổi mật khẩu
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="@Url.Action("Index", "Login")" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Đăng xuất
+                    </a>
+                </div>
             </li>
         </ul>
     </nav>
@@ -63,12 +95,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                             Trang Chủ
                         </a>
-                        @*<div class="sb-sidenav-menu-heading">QP</div>
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Quản lý Hotel
-                        </a>*@
-                    <div class="sb-sidenav-menu-heading">Quản Lý Hotel</div>
+                        <div class="sb-sidenav-menu-heading">Quản Lý Hotel</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             Quản Lý Phòng
@@ -82,8 +109,9 @@
                             </nav>
                         </div>
 
+
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseDatthuephong" aria-expanded="false" aria-controls="collapseDatthuephong">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>                          
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Đặt & Thuê Phòng
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -91,10 +119,11 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="@Url.Action("Index", "PhieuDatPhongs")">Phiếu đặt phòng</a>
                                 <a class="nav-link" href="@Url.Action("Index", "PhieuThuePhongs")">Phiếu thuê phòng</a>
-                                <a class="nav-link" href="@Url.Action("Index", "HonDons")">Hoá đơn</a>
+                                <a class="nav-link" href="@Url.Action("Index", "HoaDons")">Hoá đơn</a>
                             </nav>
                         </div>
 
+                        <div class="sb-sidenav-menu-heading">Khách Hàng</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseKH" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Quản Lý Khách Hàng
@@ -104,11 +133,26 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="@Url.Action("Index", "KhachHangs")">Khách hàng</a>
                                 <a class="nav-link" href="@Url.Action("Index", "LienHes")">Liên hệ</a>
-                                
+
                             </nav>
-                            
+
                         </div>
-                        
+
+                        <div class="sb-sidenav-menu-heading">Quản Trị</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseNV" aria-expanded="false" aria-controls="collapseNV">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Quản Lý Nhân Viên
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseNV" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="@Url.Action("Index", "NhanViens")">Nhân viên</a>
+                                <a class="nav-link" href="@Url.Action("Index", "QuanTris")">Tài Khoản nhân viên</a>
+                                <a class="nav-link" href="@Url.Action("Index", "NhomNhanSus")">Nhóm nhân sự</a>
+                                <a class="nav-link" href="@Url.Action("Index", "DanhSachQuyens")">Phân quyên</a>
+                            </nav>
+                        </div>
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -118,11 +162,11 @@
             </nav>
         </div>
         <div id="layoutSidenav_content">
-            <main>             
+            <main>
                 <div class="container-fluid px-4">
                     @RenderBody()
-                    
-                    
+
+
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

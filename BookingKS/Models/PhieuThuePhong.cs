@@ -12,7 +12,7 @@ namespace BookingKS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PhieuThuePhong()
         {
-            CT_PhieuThuePhong = new HashSet<CT_PhieuThuePhong>();
+            //CT_PhieuThuePhong = new HashSet<CT_PhieuThuePhong>();
             HoaDons = new HashSet<HoaDon>();
         }
 
@@ -32,7 +32,7 @@ namespace BookingKS.Models
         public int? maNV { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CT_PhieuThuePhong> CT_PhieuThuePhong { get; set; }
+       // public virtual ICollection<CT_PhieuThuePhong> CT_PhieuThuePhong { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDon> HoaDons { get; set; }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BookingKS.Areas.Admin.Common;
 using BookingKS.Models;
 
 namespace BookingKS.Areas.Admin.Controllers
@@ -36,6 +37,7 @@ namespace BookingKS.Areas.Admin.Controllers
         }
 
         // GET: Admin/LoaiPhongs/Create
+        [HasCredential(IDQuyen = "QUANLYLOAIPHONG")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +48,7 @@ namespace BookingKS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [HasCredential(IDQuyen = "QUANLYLOAIPHONG")]
         public ActionResult Create([Bind(Include = "ma_LP,tenLP,hinhAnh,SC,DG,MT")] LoaiPhong loaiPhong)
         {
             if (ModelState.IsValid)
@@ -59,6 +62,7 @@ namespace BookingKS.Areas.Admin.Controllers
         }
 
         // GET: Admin/LoaiPhongs/Edit/5
+        [HasCredential(IDQuyen = "QUANLYLOAIPHONG")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +82,7 @@ namespace BookingKS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [HasCredential(IDQuyen = "QUANLYLOAIPHONG")]
         public ActionResult Edit([Bind(Include = "ma_LP,tenLP,hinhAnh,SC,DG,MT")] LoaiPhong loaiPhong)
         {
             if (ModelState.IsValid)
@@ -90,6 +95,7 @@ namespace BookingKS.Areas.Admin.Controllers
         }
 
         // GET: Admin/LoaiPhongs/Delete/5
+        [HasCredential(IDQuyen = "QUANLYLOAIPHONG")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,14 +111,24 @@ namespace BookingKS.Areas.Admin.Controllers
         }
 
         // POST: Admin/LoaiPhongs/Delete/5
+        [HasCredential(IDQuyen = "QUANLYLOAIPHONG")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            LoaiPhong loaiPhong = db.LoaiPhongs.Find(id);
-            db.LoaiPhongs.Remove(loaiPhong);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                LoaiPhong loaiPhong = db.LoaiPhongs.Find(id);
+                db.LoaiPhongs.Remove(loaiPhong);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Warning: Deletion of this information is not allowed";
+                return RedirectToAction("Index");
+
+            }
+
         }
 
         protected override void Dispose(bool disposing)
@@ -128,6 +144,10 @@ namespace BookingKS.Areas.Admin.Controllers
             var timphong = db.LoaiPhongs.Where(p => p.tenLP.Contains(searchString)).ToList();
 
             return View("Index", timphong);
+        }
+        public ActionResult Trangloi()
+        {
+            return View();
         }
     }
 }

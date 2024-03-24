@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BookingKS.Areas.Admin.Common;
 using BookingKS.Models;
 
 namespace BookingKS.Areas.Admin.Controllers
@@ -90,6 +91,7 @@ namespace BookingKS.Areas.Admin.Controllers
         }
 
         // GET: Admin/KhachHangs/Delete/5
+        [HasCredential(IDQuyen = "QUANLYKHACHHANG")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,14 +107,23 @@ namespace BookingKS.Areas.Admin.Controllers
         }
 
         // POST: Admin/KhachHangs/Delete/5
+        [HasCredential(IDQuyen = "QUANLYKHACHHANG")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-        {
-            KhachHang khachHang = db.KhachHangs.Find(id);
-            db.KhachHangs.Remove(khachHang);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+        {           
+            try
+            {
+                KhachHang khachHang = db.KhachHangs.Find(id);
+                db.KhachHangs.Remove(khachHang);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Warning: Deletion of this information is not allowed";
+                return RedirectToAction("Index");
+
+            }
         }
 
         protected override void Dispose(bool disposing)

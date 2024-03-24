@@ -4,30 +4,30 @@
 }
 <main aria-labelledby="title">
     <h2 id="title">@ViewBag.Title.</h2>
-    <h3>Associate your @ViewBag.LoginProvider account.</h3>
+    <h3>Tài khoản liên kết @ViewBag.LoginProvider của bạn.</h3>
 
     @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
     {
         @Html.AntiForgeryToken()
 
-        <h4>Association Form</h4>
+        <h4></h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <p class="text-info">
-            You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
-            Please enter a user name for this site below and click the Register button to finish
-            logging in.
+            Bạn đã xác thực thành công với <strong>@ViewBag.LoginProvider</strong>.
+            Vui lòng nhập tên người dùng cho trang web này bên dưới và nhấp vào nút Đăng ký để hoàn tất đăng nhập.
         </p>
         <div class="row">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
+            
             <div class="col-md-10">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
             <div class="offset-md-2 col-md-10">
-                <input type="submit" class="btn btn-outline-dark" value="Register" />
+                <input type="submit" class="btn btn-outline-dark" value="Đăng ký" />
             </div>
         </div>
     }
@@ -36,3 +36,12 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<style>
+    input, checkbox, select {
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-weight: bolder;
+    }
+</style>

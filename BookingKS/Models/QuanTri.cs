@@ -25,8 +25,8 @@ namespace BookingKS.Models
         [StringLength(20)]
         public string IDNhom { get; set; }
 
-        public virtual NhomNhanSu NhomNhanSu { get; set; }
-
         public virtual NhanVien NhanVien { get; set; }
+
+        public virtual NhomNhanSu NhomNhanSu { get; set; }
     }
 }

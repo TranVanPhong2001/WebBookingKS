@@ -17,13 +17,15 @@
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>Mã phiếu</th>
+                    <th>Mã đặt phòng</th>
                     <th>Khách hàng</th>
+                    <th>Mã phòng</th>
                     <th>Ngày đến</th>
                     <th>Ngày đi</th>
+                    <th>Tình trạng</th>
+                    
+                    <th>Số người ở</th>
 
-                    <th>Số người</th>
-                   
 
                     <th>Chức Năng</th>
                 </tr>
@@ -37,13 +39,18 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.KhachHang.tenKH)
                         </td>
-                        
+                        <td>@item.maPhong</td>
                         <td>@item.ngayDen</td>
                         <td>@item.ngayDi</td>
-                        @*<td>
-            @Html.DisplayFor(modelItem => item.LoaiPhong.tenLP)
-        </td>*@
+                        <td>
+                            @(item.tinhTrang ? "Đã thanh toán" : "Chưa thanh toán")
+                        </td>
+                        
                         <td>@item.soNguoi</td>
+                        @*<td>
+           @Html.DisplayFor(modelItem => item.LoaiPhong.tenLP)
+        </td>*@
+
 
                         @*<td>
             <div class="home-sanpham-item_img" style="background-image: url(@item.Image); "></div>

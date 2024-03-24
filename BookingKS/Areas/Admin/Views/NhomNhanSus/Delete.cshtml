@@ -1,0 +1,52 @@
+﻿@model BookingKS.Models.NhomNhanSu
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout-Admin.cshtml";
+}
+
+<h3>Bạn có chắc chắn muốn xóa thông tin này?</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            ID Nhân sự
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDNhom)
+        </dd>
+
+        <dt>
+            Tên Nhân Sự
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenNhom)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-primary" /> |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>
+
+
+<style>
+    input, checkbox, select {
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-weight: bolder;
+    }
+</style>

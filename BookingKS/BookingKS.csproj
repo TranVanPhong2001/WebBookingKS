@@ -179,20 +179,32 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Common\CommonConstants.cs" />
+    <Compile Include="Areas\Admin\Common\Encryptor.cs" />
+    <Compile Include="Areas\Admin\Common\HasCredentialAttribute.cs" />
+    <Compile Include="Areas\Admin\Common\UserLogin.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DanhSachQuyensController.cs" />
     <Compile Include="Areas\Admin\Controllers\DichVusController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HoaDonsController.cs" />
     <Compile Include="Areas\Admin\Controllers\KhachHangsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LienHesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiPhongsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanViensController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NhomNhanSusController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhieuDatPhongsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhieuThuePhongsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhongsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyPhongController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanTrisController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThongTinTKController.cs" />
     <Compile Include="Areas\Admin\Controllers\TrangChuController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -201,11 +213,15 @@
     <Compile Include="Migrations\202305141238156_InitIdentityTable.designer.cs">
       <DependentUpon>202305141238156_InitIdentityTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312031559011_themmaphong.cs" />
+    <Compile Include="Migrations\202312031559011_themmaphong.designer.cs">
+      <DependentUpon>202312031559011_themmaphong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUser.cs" />
-    <Compile Include="Models\CT_PhieuDatPhong.cs" />
-    <Compile Include="Models\CT_PhieuThuePhong.cs" />
+    <Compile Include="Models\ChangePass.cs" />
+    <Compile Include="Models\DanhSachQuyen.cs" />
     <Compile Include="Models\DichVu.cs" />
     <Compile Include="Models\HoaDon.cs" />
     <Compile Include="Models\HotelContext.cs" />
@@ -213,12 +229,16 @@
     <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\LienHe.cs" />
     <Compile Include="Models\LoaiPhong.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NhanVien.cs" />
+    <Compile Include="Models\NhomNhanSu.cs" />
     <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\PhieuDatPhong.cs" />
     <Compile Include="Models\PhieuThuePhong.cs" />
     <Compile Include="Models\Phong.cs" />
+    <Compile Include="Models\QuanTri.cs" />
+    <Compile Include="Models\Quyen.cs" />
     <Compile Include="Models\SendMail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -232,6 +252,10 @@
     <Content Include="Areas\Admin\Content\css\styles.css" />
     <Content Include="Areas\Admin\Content\js\datatables-simple-demo.js" />
     <Content Include="Areas\Admin\Content\js\scripts.js" />
+    <Content Include="Content\Theme_KS\css\chat.css" />
+    <Content Include="Content\Theme_KS\img\thankyou.png" />
+    <Content Include="Data\about-2.jpg" />
+    <Content Include="Data\avatar.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -250,6 +274,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Theme_KS\css\bootstrap.min.css" />
+    <Content Include="Content\Theme_KS\img\avatar.jpg" />
     <Content Include="Content\Theme_KS\img\background6.jpg" />
     <Content Include="Content\Theme_KS\img\carousel-3.jpg" />
     <Content Include="Content\Theme_KS\img\room-4.jpg" />
@@ -297,6 +322,12 @@
     <Content Include="Content\Theme_KS\img\testimonial-4.jpg" />
     <Content Include="Content\Theme_KS\img\video.jpg" />
     <Content Include="Content\Theme_KS\js\main.js" />
+    <Content Include="Data\carousel-2.jpg" />
+    <Content Include="Data\ks.jpg" />
+    <Content Include="Data\ks1.jpg" />
+    <Content Include="Data\ks2.jpg" />
+    <Content Include="Data\ks3.jpg" />
+    <Content Include="Data\ks4.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -436,6 +467,38 @@
     <Content Include="Areas\Admin\Views\PhieuThuePhongs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\PhieuThuePhongs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\PhieuThuePhongs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\401.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhSachQuyens\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhSachQuyens\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhSachQuyens\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhSachQuyens\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhSachQuyens\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NhomNhanSus\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NhomNhanSus\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NhomNhanSus\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NhomNhanSus\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NhomNhanSus\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ThongTinTK\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\ThongTinTK\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ThongTinTK\DoiMatKhau.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachSans\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachSans\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachSans\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachSans\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachSans\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiPhongs\Trangloi.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanTris\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanTris\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanTris\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanTris\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanTris\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -489,13 +552,15 @@
     <Content Include="Views\Hotel\Service.cshtml" />
     <Content Include="Views\Hotel\Room.cshtml" />
     <Content Include="Views\Hotel\Booking.cshtml" />
-    <Content Include="Views\Hotel\SendMail.cshtml" />
     <Content Include="Views\ShoppingCart\SuccessView.cshtml" />
     <Content Include="Views\ShoppingCart\FailureView.cshtml" />
+    <Content Include="Views\Room\Index.cshtml" />
+    <Content Include="Views\Room\Details.cshtml" />
+    <Content Include="Views\Room\PhanLoaiPhong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Views\Thanhtoan\" />
   </ItemGroup>
   <ItemGroup>
@@ -528,6 +593,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202305141238156_InitIdentityTable.resx">
       <DependentUpon>202305141238156_InitIdentityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312031559011_themmaphong.resx">
+      <DependentUpon>202312031559011_themmaphong.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

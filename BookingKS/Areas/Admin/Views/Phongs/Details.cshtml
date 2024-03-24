@@ -5,71 +5,74 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout-Admin.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết Phòng</h2>
 
 <div>
-    <h4>Phong</h4>
+    
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiPhong.tenLP)
-        </dt>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LoaiPhong.tenLP, "Tên Loại Phòng ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
 
-        <dd>
-            @Html.DisplayFor(model => model.LoaiPhong.tenLP)
-        </dd>
+                @Html.DisplayFor(model => model.LoaiPhong.tenLP)
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tenPhong)
-        </dt>
+        <div class="form-group">
+            @Html.LabelFor(model => model.tenPhong, "Tên Phòng ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
 
-        <dd>
-            @Html.DisplayFor(model => model.tenPhong)
-        </dd>
+                @Html.DisplayFor(model => model.tenPhong)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LoaiPhong.tenLP, "Tên Loại Phòng ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
+                @Html.DisplayFor(model => model.LoaiPhong.tenLP)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.sucChua, "Số lượng ngưởi ở", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
 
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
+                @Html.DisplayFor(model => model.sucChua)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.donGia, "Giá phòng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.sucChua)
-        </dt>
+                @Html.DisplayFor(model => model.donGia)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.moTa, "Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
 
-        <dd>
-            @Html.DisplayFor(model => model.sucChua)
-        </dd>
+                @Html.DisplayFor(model => model.moTa)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.tinhTrang, "Tình trạng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.donGia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.donGia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.moTa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.moTa)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tinhTrang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tinhTrang)
-        </dd>
-
+                @Html.DisplayFor(model => model.tinhTrang)
+            </div>
+        </div>    
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.maPhong }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Cập nhật", "Edit", new { id = Model.maPhong }) |
+    @Html.ActionLink("Quay lại", "Index")
 </p>
+<style>
+    input, checkbox, select {
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-weight: bolder;
+    }
+</style>

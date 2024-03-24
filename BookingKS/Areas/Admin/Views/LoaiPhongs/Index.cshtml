@@ -17,16 +17,16 @@
         <i class="fas fa-table me-1"></i>
         Danh Sách
     </div>
-    
+
     <div class="card-body">
         <table id="datatablesSimple">
             <thead>
                 <tr>
                     <th>Mã Loại</th>
                     <th>Tên Loại Phòng</th>
-                    
+
                     <th>Đơn Giá</th>
-                    
+
 
                     <th>Chức Năng</th>
                 </tr>
@@ -38,23 +38,17 @@
                     <tr>
                         <td>@item.ma_LP</td>
                         <td>@item.tenLP</td>
-                       <td>@item.DG</td>
-                        
-                        
+                        <td>@item.DG</td>
 
-                    <td>
-                        @Html.ActionLink("Sửa", "Edit", new { id = item.ma_LP }) |
-                        @Html.ActionLink("Chi tiết", "Details", new { id = item.ma_LP }) |
-                        @Html.ActionLink("Xoá", "Delete", new { id = item.ma_LP })
 
-                        @*<a href="@Url.Action("Edit",
-                        new { id = item.ma_LP})" class="edit-btn"><abbr title="Cập nhật dữ liệu"><img src="/images/edit.png" width="20" height="20" /></abbr></a>
-                        <a href="@Url.Action("Details",
-                        new { id = item.ma_LP})" class="edit-btn"><abbr title="Xem chi tiết"><img src="/images/details.png" width="20" height="20" /></abbr></a>
-                        <a href="@Url.Action("Delete",new { id = item.ma_LP})" class="edit-btn"> <i class="fa-sharp fa-solid fa-house"></i>
+
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.ma_LP }) |
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.ma_LP }) |
+                            @Html.ActionLink("Xoá", "Delete", new { id = item.ma_LP })
+
                             
-                        </a>*@
-                    </td>
+                        </td>
 
                     </tr>
                 }
@@ -63,7 +57,19 @@
         </table>
     </div>
 </div>
-   
-    
+
+<!-- Add this script to your view or layout -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Check for the existence of the error message in TempData
+        var errorMessage = '@TempData["ErrorMessage"]';
+
+        if (errorMessage && errorMessage.length > 0) {
+            // Display an alert with the error message
+            alert(errorMessage);
+        }
+    });
+</script>
 
 
